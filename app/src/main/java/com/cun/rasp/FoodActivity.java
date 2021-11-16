@@ -54,18 +54,32 @@ public class FoodActivity extends AppCompatActivity {
 
     private void createList() {
         foodNames = new String[4];
-        foodNames = "Rumput Gajah","Jagung","Ampas Tahu","Konsentrat"];
+        foodNames = new String[]{"Rumput Gajah", "Jagung", "Ampas Tahu", "Konsentrat"};
         foods = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
+
+        for (String i : foodNames) {
             Food food = new Food();
-            food.setName("Food " + (i + 1));
+            food.setName(i);
             // for example to show at least one selection
-            if (i == 0) {
+            if (i.equals("Rumput Gajah")) {
                 food.setChecked(true);
+
             }
             //
             foods.add(food);
         }
+
+//        for (int i = 0; i < 20; i++) {
+//
+//            Food food = new Food();
+//            food.setName("Food " + (i + 1));
+//            // for example to show at least one selection
+//            if (i == 0) {
+//                food.setChecked(true);
+//            }
+//            //
+//            foods.add(food);
+//        }
         adapter.setFoods(foods);
     }
 
