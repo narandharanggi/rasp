@@ -11,11 +11,19 @@ import android.widget.Spinner;
 
 public class MainActivity extends AppCompatActivity {
 
+    private DatabaseHandler db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        db = new DatabaseHandler(MainActivity.this);
+            try {
+                db.createDataBase();
+            } catch (Exception e){
+                e.printStackTrace();
+            }
         laktasiSpinner();
         pbbSpinner();
         movePakanLayout();
