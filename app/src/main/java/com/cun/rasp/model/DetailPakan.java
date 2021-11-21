@@ -11,7 +11,7 @@ public class DetailPakan {
     private int bahan_pakan;
 
     // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_DETAIL_PAKAN =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_SAPI + " INTEGER,"

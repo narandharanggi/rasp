@@ -22,7 +22,7 @@ public class BahanPakan {
     private int harga;
 
     // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_BAHAN_PAKAN =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_NAMA_PAKAN + " TEXT,"

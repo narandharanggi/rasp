@@ -13,7 +13,7 @@ public class DetailSapi {
     private int perBB;
 
     // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_DETAIL_SAPI =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_SAPI + " INTEGER,"

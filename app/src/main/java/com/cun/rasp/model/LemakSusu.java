@@ -11,17 +11,17 @@ public class LemakSusu {
     public static final String COLUMN_P = "p";
 
     private int id;
-    private String persen_lemak;
+    private Double persen_lemak;
     private Double tdn;
     private Double pk;
     private Double ca;
     private Double p;
 
     // Create table SQL query
-    public static final String CREATE_TABLE =
+    public static final String CREATE_TABLE_LEMAK_SUSU =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_PERSEN_LEMAK + " TEXT,"
+                    + COLUMN_PERSEN_LEMAK + " REAL,"
                     + COLUMN_TDN + " REAL,"
                     + COLUMN_PK + " REAL,"
                     + COLUMN_CA + " REAL,"
@@ -31,7 +31,7 @@ public class LemakSusu {
     public LemakSusu() {
     }
 
-    public LemakSusu(int id, String persen_lemak, Double tdn, Double pk, Double ca, Double p) {
+    public LemakSusu(int id, Double persen_lemak, Double tdn, Double pk, Double ca, Double p) {
         this.id = id;
         this.persen_lemak = persen_lemak;
         this.tdn = tdn;
@@ -45,7 +45,7 @@ public class LemakSusu {
         return id;
     }
 
-    public String getPersenLemak() {
+    public Double getPersenLemak() {
         return persen_lemak;
     }
 
@@ -71,7 +71,7 @@ public class LemakSusu {
         this.id = id;
     }
 
-    public void setPersenLemak(String persen_lemak) {
+    public void setPersenLemak(Double persen_lemak) {
         this.persen_lemak = persen_lemak;
     }
 
