@@ -20,7 +20,7 @@ public class Sapi {
                     + COLUMN_PRODUKSI_SUSU + " INTEGER,"
                     + COLUMN_BK + " REAL,"
                     + "FOREIGN KEY (" + COLUMN_BOBOT + ") REFERENCES " + "bobot_sapi" + "(id),"
-                    + "FOREIGN KEY (" + COLUMN_PRODUKSI_SUSU + ") REFERENCES " + "produksi_susu" + "(id),"
+                    + "FOREIGN KEY (" + COLUMN_PRODUKSI_SUSU + ") REFERENCES " + "produksi_susu" + "(id)"
                     + ")";
 
 

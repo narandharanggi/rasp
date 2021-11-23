@@ -19,4 +19,10 @@
     <color name="colorRartingActive">#FDA14F</color>
     <color name="colorRatingInactive">#C9C9D1</color>
     <color name="colorBackground">#EEEEEE</color>
+
+
+    <color name="msg_no_notes">#999</color>
+    <color name="hint_enter_note">#89c3c3c3</color>
+    <color name="timestamp">#858585</color>
+    <color name="note_list_text">#232323</color>
 </resources>

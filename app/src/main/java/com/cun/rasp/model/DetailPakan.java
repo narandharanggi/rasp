@@ -17,7 +17,7 @@ public class DetailPakan {
                     + COLUMN_SAPI + " INTEGER,"
                     + COLUMN_BAHAN_PAKAN + " INTEGER,"
                     + "FOREIGN KEY (" + COLUMN_SAPI + ") REFERENCES " + "detail_sapi" + "(id),"
-                    + "FOREIGN KEY (" + COLUMN_BAHAN_PAKAN + ") REFERENCES " + "bahan_pakan" + "(id),"
+                    + "FOREIGN KEY (" + COLUMN_BAHAN_PAKAN + ") REFERENCES " + "bahan_pakan" + "(id)"
                     + ")";
 
 

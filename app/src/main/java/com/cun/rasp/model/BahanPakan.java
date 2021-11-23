@@ -31,7 +31,7 @@ public class BahanPakan {
                     + COLUMN_PK + " REAL,"
                     + COLUMN_CA + " REAL,"
                     + COLUMN_P + " REAL,"
-                    + COLUMN_HARGA + " INTEGER,"
+                    + COLUMN_HARGA + " INTEGER"
                     + ")";
 
     public BahanPakan() {

@@ -21,7 +21,7 @@ public class DetailSapi {
                     + COLUMN_perBB + " INTEGER,"
                     + "FOREIGN KEY (" + COLUMN_SAPI + ") REFERENCES " + "sapi" + "(id),"
                     + "FOREIGN KEY (" + COLUMN_LEMAK_SUSU + ") REFERENCES " + "lemak_susu" + "(id),"
-                    + "FOREIGN KEY (" + COLUMN_perBB + ") REFERENCES " + "perBB" + "(id),"
+                    + "FOREIGN KEY (" + COLUMN_perBB + ") REFERENCES " + "perBB" + "(id)"
                     + ")";
 
 

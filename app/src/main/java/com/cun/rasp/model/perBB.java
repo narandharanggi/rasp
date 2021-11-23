@@ -19,7 +19,7 @@ public class perBB {
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_KETERANGAN + " TEXT,"
                     + COLUMN_TDN + " REAL,"
-                    + COLUMN_PK + " REAL,"
+                    + COLUMN_PK + " REAL"
                     + ")";
 
     public perBB() {

@@ -40,14 +40,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("PRAGMA foreign_keys=ON;");
         // creating required tables
-        db.execSQL(Sapi.CREATE_TABLE_SAPI);
-        db.execSQL(BahanPakan.CREATE_TABLE_BAHAN_PAKAN);
-        db.execSQL(BobotSapi.CREATE_TABLE_BOBOT_SAPI);
-        db.execSQL(DetailPakan.CREATE_TABLE_DETAIL_PAKAN);
-        db.execSQL(DetailSapi.CREATE_TABLE_DETAIL_SAPI);
+        db.execSQL(ProduksiSusu.CREATE_TABLE_PRODUKSI_SUSU);
         db.execSQL(LemakSusu.CREATE_TABLE_LEMAK_SUSU);
         db.execSQL(perBB.CREATE_TABLE_PERBB);
-        db.execSQL(ProduksiSusu.CREATE_TABLE_PRODUKSI_SUSU);
+        db.execSQL(BahanPakan.CREATE_TABLE_BAHAN_PAKAN);
+        db.execSQL(BobotSapi.CREATE_TABLE_BOBOT_SAPI);
+        db.execSQL(Sapi.CREATE_TABLE_SAPI);
+        db.execSQL(DetailPakan.CREATE_TABLE_DETAIL_PAKAN);
+        db.execSQL(DetailSapi.CREATE_TABLE_DETAIL_SAPI);
     }
 
     @Override
@@ -697,12 +697,12 @@ public List<BahanPakan> getAllBahanPakans() {
         values.put(BahanPakan.COLUMN_TDN, bahanpakan.getTdn());
 
         // updating row
-        int update = db.update(BahanPakan.TABLE_NAME, values, BahanPakan.COLUMN_ID + " = ?",
+    return db.update(BahanPakan.TABLE_NAME, values, BahanPakan.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(bahanpakan.getId()) });
 
-    closeDB();
+    
 
-    return update;
+    
         
     }
  
@@ -720,12 +720,12 @@ public List<BahanPakan> getAllBahanPakans() {
 
 
         // updating row
-        int update = db.update(BobotSapi.TABLE_NAME, values, BobotSapi.COLUMN_ID + " = ?",
+    return db.update(BobotSapi.TABLE_NAME, values, BobotSapi.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(bobotsapi.getId()) });
 
-    closeDB();
+    
 
-    return update;
+    
         
     }
  
@@ -740,12 +740,12 @@ public List<BahanPakan> getAllBahanPakans() {
         values.put(DetailPakan.COLUMN_BAHAN_PAKAN, detailpakan.getBahanPakan());
 
         // updating row
-        int update = db.update(DetailPakan.TABLE_NAME, values, DetailPakan.COLUMN_ID + " = ?",
+    return db.update(DetailPakan.TABLE_NAME, values, DetailPakan.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(detailpakan.getId()) });
 
-    closeDB();
+    
 
-    return update;
+    
         
     }
 
@@ -760,12 +760,12 @@ public List<BahanPakan> getAllBahanPakans() {
         values.put(DetailSapi.COLUMN_perBB, detailsapi.getperBB());
 
         // updating row
-        int update = db.update(DetailSapi.TABLE_NAME, values, DetailSapi.COLUMN_ID + " = ?",
+    return db.update(DetailSapi.TABLE_NAME, values, DetailSapi.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(detailsapi.getId()) });
 
-    closeDB();
+    
 
-    return update;
+    
         
     }
 
@@ -783,12 +783,12 @@ public List<BahanPakan> getAllBahanPakans() {
             values.put(LemakSusu.COLUMN_P, lemaksusu.getP());
 
         // updating row
-        int update = db.update(LemakSusu.TABLE_NAME, values, LemakSusu.COLUMN_ID + " = ?",
+        return db.update(LemakSusu.TABLE_NAME, values, LemakSusu.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(lemaksusu.getId()) });
 
-        closeDB();
+        
 
-        return update;
+        
         
     }
     
@@ -802,13 +802,12 @@ public List<BahanPakan> getAllBahanPakans() {
             values.put(perBB.COLUMN_PK, perbb.getPk());
 
         // updating row
-        int update = db.update(perBB.TABLE_NAME, values, perBB.COLUMN_ID + " = ?",
+    return db.update(perBB.TABLE_NAME, values, perBB.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(perbb.getId()) });
 
-    closeDB();
+    
 
-    return update;
-        
+    
     }
     
     public int updateProduksiSusu(ProduksiSusu produksisusu) {
@@ -819,12 +818,12 @@ public List<BahanPakan> getAllBahanPakans() {
         values.put(ProduksiSusu.COLUMN_PRODUKSI_SUSU, produksisusu.getProduksiSusu());
 
         // updating row
-        int update = db.update(ProduksiSusu.TABLE_NAME, values, ProduksiSusu.COLUMN_ID + " = ?",
+    return db.update(ProduksiSusu.TABLE_NAME, values, ProduksiSusu.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(produksisusu.getId()) });
 
-    closeDB();
+    
 
-    return update;
+    
         
     }
 
@@ -838,12 +837,12 @@ public List<BahanPakan> getAllBahanPakans() {
         values.put(Sapi.COLUMN_BK, sapi.getBk());
 
         // updating row
-        int update = db.update(Sapi.TABLE_NAME, values, Sapi.COLUMN_ID + " = ?",
+    return db.update(Sapi.TABLE_NAME, values, Sapi.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(sapi.getId()) });
 
-    closeDB();
+    
 
-    return update;
+    
         
     }
 
@@ -915,5 +914,18 @@ public List<BahanPakan> getAllBahanPakans() {
         SQLiteDatabase db = this.getReadableDatabase();
         if (db != null && db.isOpen())
             db.close();
+    }
+
+    public int getBahanPakanCount() {
+        String countQuery = "SELECT  * FROM " + BahanPakan.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
     }
 }

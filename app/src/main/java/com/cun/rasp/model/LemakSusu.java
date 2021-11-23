@@ -25,7 +25,7 @@ public class LemakSusu {
                     + COLUMN_TDN + " REAL,"
                     + COLUMN_PK + " REAL,"
                     + COLUMN_CA + " REAL,"
-                    + COLUMN_P + " REAL,"
+                    + COLUMN_P + " REAL"
                     + ")";
 
     public LemakSusu() {

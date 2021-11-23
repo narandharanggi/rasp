@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">RASP</string>
-
+    <!-- <string name="action_settings">Settings</string>
+    <string name="activity_title_home">Notes</string> -->
+    <!-- <string name="msg_no_notes">No notes found!</string> -->
+    <string name="lbl_new_bahan_pakan_title">Tambah Bahan Pakan</string>
+    <string name="lbl_edit_bahan_pakan_title">Edit Bahan Pakan</string>
+    <!-- <string name="hint_enter_note">Enter your note!</string> -->
     <string name="next">Lanjut</string>
 </resources>

@@ -15,7 +15,7 @@ public class ProduksiSusu {
     public static final String CREATE_TABLE_PRODUKSI_SUSU =
             "CREATE TABLE " + TABLE_NAME + "("
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + COLUMN_PRODUKSI_SUSU + " INTEGER,"
+                    + COLUMN_PRODUKSI_SUSU + " INTEGER"
                     + ")";
 
     public ProduksiSusu() {
