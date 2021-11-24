@@ -5,6 +5,10 @@
     <!-- <string name="msg_no_notes">No notes found!</string> -->
     <string name="lbl_new_bahan_pakan_title">Tambah Bahan Pakan</string>
     <string name="lbl_edit_bahan_pakan_title">Edit Bahan Pakan</string>
+    <string name="lbl_new_bobot_sapi_title">Tambah Bobot Sapi</string>
+    <string name="lbl_edit_bobot_sapi_title">Edit Bobot Sapi</string>
+    <string name="lbl_new_detail_pakan_title">Tambah Detail Pakan</string>
+    <string name="lbl_edit_detail_pakan_title">Edit Detail Pakan</string>
     <!-- <string name="hint_enter_note">Enter your note!</string> -->
     <string name="next">Lanjut</string>
 </resources>

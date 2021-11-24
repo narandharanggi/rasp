@@ -9,21 +9,10 @@
     android:paddingRight="@dimen/activity_margin"
     android:paddingTop="@dimen/dimen_10">
 
-   <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_10"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="8sp"
-        android:id="@+id/nama_pakan_BahanPakan_data_row_list"
-        android:textColor="@color/colorAccent"
-        android:textSize="24sp"
-        android:textStyle="normal" />
 
- <TextView android:id="@+id/tdn_BahanPakan_judul"
+ <TextView android:id="@+id/tdn_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_below="@id/nama_pakan_BahanPakan_data_row_list"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
         android:text="TDN"
@@ -32,8 +21,8 @@
         android:textStyle="normal" />
 
     <TextView
-        android:id="@+id/tdn_BahanPakan_data_row_list"
-         android:layout_below="@id/tdn_BahanPakan_judul"
+        android:id="@+id/tdn_bobot_sapi_data_row_list"
+         android:layout_below="@id/tdn_bobot_sapi_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
@@ -41,30 +30,30 @@
         android:textSize="@dimen/timestamp" />
     
 
-    <TextView android:id="@+id/bk_BahanPakan_judul"
+    <TextView android:id="@+id/bobot_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_below="@id/tdn_BahanPakan_data_row_list"
+         android:layout_below="@id/tdn_bobot_sapi_data_row_list"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
-        android:text="BK"
+        android:text="Bobot"
         android:textColor="@color/colorTextSecondary"
         android:textSize="14sp"
         android:textStyle="normal" />
 
     <TextView
-        android:id="@+id/bk_BahanPakan_data_row_list"
-         android:layout_below="@id/bk_BahanPakan_judul"
+        android:id="@+id/bobot_bobot_sapi_data_row_list"
+         android:layout_below="@id/bobot_bobot_sapi_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:layout_marginBottom="@dimen/dimen_10"
         android:textSize="@dimen/timestamp" />
 
-<TextView android:id="@+id/pk_BahanPakan_judul"
+<TextView android:id="@+id/pk_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_below="@id/bk_BahanPakan_data_row_list"
+         android:layout_below="@id/bobot_bobot_sapi_data_row_list"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
         android:text="PK"
@@ -73,8 +62,8 @@
         android:textStyle="normal" />
 
     <TextView
-        android:id="@+id/pk_BahanPakan_data_row_list"
-         android:layout_below="@id/pk_BahanPakan_judul"
+        android:id="@+id/pk_bobot_sapi_data_row_list"
+         android:layout_below="@id/pk_bobot_sapi_judul"
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -82,10 +71,10 @@
         android:layout_marginBottom="@dimen/dimen_10"
         android:textSize="@dimen/timestamp" />
 
- <TextView android:id="@+id/ca_BahanPakan_judul"
+ <TextView android:id="@+id/ca_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_below="@id/pk_BahanPakan_data_row_list"
+         android:layout_below="@id/pk_bobot_sapi_data_row_list"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
         android:text="CA"
@@ -95,18 +84,18 @@
 
     
     <TextView
-        android:id="@+id/ca_BahanPakan_data_row_list"
-         android:layout_below="@id/ca_BahanPakan_judul"
+        android:id="@+id/ca_bobot_sapi_data_row_list"
+         android:layout_below="@id/ca_bobot_sapi_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:layout_marginBottom="@dimen/dimen_10"
         android:textSize="@dimen/timestamp" />
 
-<TextView android:id="@+id/p_BahanPakan_judul"
+<TextView android:id="@+id/p_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-         android:layout_below="@id/ca_BahanPakan_data_row_list"
+         android:layout_below="@id/ca_bobot_sapi_data_row_list"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
         android:text="P"
@@ -116,34 +105,13 @@
 
     
     <TextView
-        android:id="@+id/p_BahanPakan_data_row_list"
-         android:layout_below="@id/p_BahanPakan_judul"
+        android:id="@+id/p_bobot_sapi_data_row_list"
+         android:layout_below="@id/p_bobot_sapi_judul"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorTextPrimary"
         android:layout_marginBottom="@dimen/dimen_10"
         android:textSize="@dimen/timestamp" />
 
-  <TextView android:id="@+id/harga_BahanPakan_judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-         android:layout_below="@id/p_BahanPakan_data_row_list"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="8sp"
-        android:text="Harga"
-        android:textColor="@color/colorTextSecondary"
-        android:textSize="14sp"
-        android:textStyle="normal" />
-
-    
-    <TextView
-        android:id="@+id/harga_BahanPakan_data_row_list"
-         android:layout_below="@id/harga_BahanPakan_judul"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorTextPrimary"
-        android:layout_marginBottom="@dimen/dimen_10"
-        android:textSize="@dimen/timestamp" />
 
 </RelativeLayout>

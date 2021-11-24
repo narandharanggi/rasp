@@ -37,6 +37,13 @@
         <activity
             android:name=".view.bahanpakan.BahanPakanActivity"
             android:exported="true" />
+        <activity
+            android:name=".view.bobotsapi.BobotSapiActivity"
+            android:exported="true" />
+   
+        <activity
+            android:name=".view.detailpakan.DetailPakanActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

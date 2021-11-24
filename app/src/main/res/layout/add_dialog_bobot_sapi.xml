@@ -17,33 +17,32 @@
         android:textColor="@color/colorAccent"
         android:textSize="28sp"
         android:textStyle="normal" />
-  
-    <TextView android:id="@+id/judul_nama_bahan"
+
+   <TextView android:id="@+id/bobot_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
-        android:text="Nama Pakan"
+        android:text="BK"
         android:textColor="@color/colorTextPrimary"
         android:textSize="20sp"
         android:textStyle="normal" />
 
-
-     <EditText
-        android:id="@+id/nama_pakan_BahanPakan"
+    <EditText
+        android:id="@+id/bobot_bobot_sapi"
         android:layout_width="match_parent"
+        android:inputType="numberDecimal"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="top"
-        android:hint="nama_pakan"
-        android:inputType="textCapSentences|textMultiLine"
+        android:hint="bobot"
         android:lines="1"
         android:minHeight="48dp"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
-
- <TextView android:id="@+id/tdn_BahanPakan_judul"
+   
+ <TextView android:id="@+id/tdn_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -56,7 +55,7 @@
 
 
     <EditText
-        android:id="@+id/tdn_BahanPakan"
+        android:id="@+id/tdn_bobot_sapi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -68,31 +67,8 @@
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
     
-    <TextView android:id="@+id/bk_BahanPakan_judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_10"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="8sp"
-        android:text="BK"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="20sp"
-        android:textStyle="normal" />
 
-    <EditText
-        android:id="@+id/bk_BahanPakan"
-        android:layout_width="match_parent"
-        android:inputType="numberDecimal"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:gravity="top"
-        android:hint="bk"
-        android:lines="1"
-        android:minHeight="48dp"
-        android:textColorHint="@color/hint_enter_note"
-        android:textSize="@dimen/input_new_note" />
-
-<TextView android:id="@+id/pk_BahanPakan_judul"
+<TextView android:id="@+id/pk_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -105,7 +81,7 @@
 
     
     <EditText
-        android:id="@+id/pk_BahanPakan"
+        android:id="@+id/pk_bobot_sapi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -117,7 +93,7 @@
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
 
- <TextView android:id="@+id/ca_BahanPakan_judul"
+ <TextView android:id="@+id/ca_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -130,7 +106,7 @@
 
     
     <EditText
-        android:id="@+id/ca_BahanPakan"
+        android:id="@+id/ca_bobot_sapi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -142,7 +118,7 @@
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
 
-<TextView android:id="@+id/p_BahanPakan_judul"
+<TextView android:id="@+id/p_bobot_sapi_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -155,7 +131,7 @@
 
     
     <EditText
-        android:id="@+id/p_BahanPakan"
+        android:id="@+id/p_bobot_sapi"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -167,29 +143,6 @@
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
 
-  <TextView android:id="@+id/harga_BahanPakan_judul"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/dimen_10"
-        android:fontFamily="sans-serif-medium"
-        android:lineSpacingExtra="8sp"
-        android:text="Harga"
-        android:textColor="@color/colorTextPrimary"
-        android:textSize="20sp"
-        android:textStyle="normal" />
-
-    
-    <EditText
-        android:id="@+id/harga_BahanPakan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:background="@android:color/transparent"
-        android:gravity="top"
-        android:hint="harga"
-        android:lines="1"
-        android:minHeight="48dp"
-        android:textColorHint="@color/hint_enter_note"
-        android:textSize="@dimen/input_new_note" />
+ 
 
 </LinearLayout>

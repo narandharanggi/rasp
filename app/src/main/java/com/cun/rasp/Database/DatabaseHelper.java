@@ -928,4 +928,30 @@ public List<BahanPakan> getAllBahanPakans() {
         // return count
         return count;
     }
+    
+    public int getBobotSapiCount() {
+        String countQuery = "SELECT  * FROM " + BobotSapi.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
+    
+    public int getDetailPakanCount() {
+        String countQuery = "SELECT  * FROM " + DetailPakan.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
 }
