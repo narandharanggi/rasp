@@ -9,6 +9,10 @@
     <string name="lbl_edit_bobot_sapi_title">Edit Bobot Sapi</string>
     <string name="lbl_new_detail_pakan_title">Tambah Detail Pakan</string>
     <string name="lbl_edit_detail_pakan_title">Edit Detail Pakan</string>
+    <string name="lbl_new_detail_sapi_title">Tambah Detail Sapi</string>
+    <string name="lbl_edit_detail_sapi_title">Edit Detail Sapi</string>
+    <string name="lbl_new_lemak_susu_title">Tambah Lemak Susu</string>
+    <string name="lbl_edit_lemak_susu_title">Edit Lemak Susu</string>
     <!-- <string name="hint_enter_note">Enter your note!</string> -->
     <string name="next">Lanjut</string>
 </resources>

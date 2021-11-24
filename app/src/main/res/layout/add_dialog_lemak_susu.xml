@@ -18,31 +18,31 @@
         android:textSize="28sp"
         android:textStyle="normal" />
 
-   <TextView android:id="@+id/bobot_bobot_sapi_judul"
+   <TextView android:id="@+id/persen_lemak_lemak_susu_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
         android:fontFamily="sans-serif-medium"
         android:lineSpacingExtra="8sp"
-        android:text="Bobot"
+        android:text="Persen Lemak"
         android:textColor="@color/colorTextPrimary"
         android:textSize="20sp"
         android:textStyle="normal" />
 
     <EditText
-        android:id="@+id/bobot_bobot_sapi"
+        android:id="@+id/persen_lemak_lemak_susu"
         android:layout_width="match_parent"
         android:inputType="numberDecimal"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:gravity="top"
-        android:hint="bobot"
+        android:hint="persen_lemak"
         android:lines="1"
         android:minHeight="48dp"
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
    
- <TextView android:id="@+id/tdn_bobot_sapi_judul"
+ <TextView android:id="@+id/tdn_lemak_susu_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -55,7 +55,7 @@
 
 
     <EditText
-        android:id="@+id/tdn_bobot_sapi"
+        android:id="@+id/tdn_lemak_susu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -68,7 +68,7 @@
         android:textSize="@dimen/input_new_note" />
     
 
-<TextView android:id="@+id/pk_bobot_sapi_judul"
+<TextView android:id="@+id/pk_lemak_susu_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -81,7 +81,7 @@
 
     
     <EditText
-        android:id="@+id/pk_bobot_sapi"
+        android:id="@+id/pk_lemak_susu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -93,7 +93,7 @@
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
 
- <TextView android:id="@+id/ca_bobot_sapi_judul"
+ <TextView android:id="@+id/ca_lemak_susu_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -106,7 +106,7 @@
 
     
     <EditText
-        android:id="@+id/ca_bobot_sapi"
+        android:id="@+id/ca_lemak_susu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"
@@ -118,7 +118,7 @@
         android:textColorHint="@color/hint_enter_note"
         android:textSize="@dimen/input_new_note" />
 
-<TextView android:id="@+id/p_bobot_sapi_judul"
+<TextView android:id="@+id/p_lemak_susu_judul"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/dimen_10"
@@ -131,7 +131,7 @@
 
     
     <EditText
-        android:id="@+id/p_bobot_sapi"
+        android:id="@+id/p_lemak_susu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="numberDecimal"

@@ -1,4 +1,4 @@
-package com.cun.rasp.view.bahanpakan;
+package com.cun.rasp.view.lemaksusu;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cun.rasp.Database.DatabaseHelper;
 import com.cun.rasp.R;
-import com.cun.rasp.model.BahanPakan;
+import com.cun.rasp.model.LemakSusu;
 import com.cun.rasp.utils.MyDividerItemDecoration;
 import com.cun.rasp.utils.RecyclerTouchListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,12 +30,12 @@ import java.util.List;
 
 
 
-public class BahanPakanActivity extends AppCompatActivity {
-    private BahanPakanAdapter mAdapter;
-    private List<BahanPakan> bahanPakanList = new ArrayList<>();
+public class LemakSusuActivity extends AppCompatActivity {
+    private LemakSusuAdapter mAdapter;
+    private List<LemakSusu> lemaksusuList = new ArrayList<>();
     private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerView;
-    private TextView noBahanPakanView;
+    private TextView noLemakSusuView;
     NumberFormat nm = NumberFormat.getNumberInstance();
 
     private DatabaseHelper db;
@@ -43,33 +43,33 @@ public class BahanPakanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.bahan_pakan_main);
+        setContentView(R.layout.lemak_susu_main);
 
 
-        coordinatorLayout = findViewById(R.id.coordinator_layout_bahan_pakan);
-        recyclerView = findViewById(R.id.recycler_view_bahan_pakan);
-        noBahanPakanView = findViewById(R.id.empty_bahan_pakan_view);
+        coordinatorLayout = findViewById(R.id.coordinator_layout_lemak_susu);
+        recyclerView = findViewById(R.id.recycler_view_lemak_susu);
+        noLemakSusuView = findViewById(R.id.empty_lemak_susu_view);
 
         db = new DatabaseHelper(this);
 
-        bahanPakanList.addAll(db.getAllBahanPakans());
+        lemaksusuList.addAll(db.getAllLemakSusus());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_bahan_pakan);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_lemak_susu);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showBahanPakanDialog(false, null, -1);
+                showLemakSusuDialog(false, null, -1);
             }
         });
 
-        mAdapter = new BahanPakanAdapter(this, bahanPakanList);
+        mAdapter = new LemakSusuAdapter(this, lemaksusuList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
 
-        toggleEmptyBahanPakan();
+        toggleEmptyLemakSusu();
 
         /**
          * On long press on RecyclerView item, open alert dialog
@@ -93,22 +93,22 @@ public class BahanPakanActivity extends AppCompatActivity {
      * Inserting new note in db
      * and refreshing the list
      */
-    private void createBahanPakan(String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga) {
+    private void createLemakSusu(Double persen_lemak, Double tdn, Double pk, Double ca, Double p) {
         // inserting note in db and getting
         // newly inserted note id
-        long id = db.insertBahanPakan(nama_pakan, bk,  tdn, pk, ca, p, harga);
+        long id = db.insertLemakSusu(persen_lemak, tdn, pk, ca, p);
 
         // get the newly inserted note from db
-        BahanPakan n = db.getBahanPakan(id);
+        LemakSusu n = db.getLemakSusu(id);
 
         if (n != null) {
             // adding new note to array list at 0 position
-            bahanPakanList.add(0, n);
+            lemaksusuList.add(0, n);
 
             // refreshing the list
             mAdapter.notifyDataSetChanged();
 
-            toggleEmptyBahanPakan();
+            toggleEmptyLemakSusu();
         }
     }
 
@@ -116,41 +116,39 @@ public class BahanPakanActivity extends AppCompatActivity {
      * Updating note in db and updating
      * item in the list by its position
      */
-    private void updateBahanPakan(String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga, int position) {
-        BahanPakan n = bahanPakanList.get(position);
+    private void updateLemakSusu(Double persen_lemak, Double tdn, Double pk, Double ca, Double p, int position) {
+        LemakSusu n = lemaksusuList.get(position);
         // updating note text
-        n.setNamaPakan(nama_pakan);
+        n.setPersenLemak(persen_lemak);
         n.setTdn(tdn);
-        n.setBk(bk);
         n.setPk(pk);
         n.setCa(ca);
         n.setP(p);
-        n.setHarga(harga);
 
         // updating note in db
-        db.updateBahanPakan(n);
+        db.updateLemakSusu(n);
 
         // refreshing the list
-        bahanPakanList.set(position, n);
+        lemaksusuList.set(position, n);
         mAdapter.notifyItemChanged(position);
 
-        toggleEmptyBahanPakan();
+        toggleEmptyLemakSusu();
     }
 
     /**
      * Deleting note from SQLite and removing the
      * item from the list by its position
      */
-    private void deleteBahanPakan(int position) {
+    private void deleteLemakSusu(int position) {
         // deleting the note from db
-        BahanPakan bahan_pakan_position = bahanPakanList.get(position);
-        db.deleteBahanPakan(bahan_pakan_position.getId());
+        LemakSusu LemakSusu_position = lemaksusuList.get(position);
+        db.deleteLemakSusu(LemakSusu_position.getId());
 
         // removing the note from the list
-        bahanPakanList.remove(position);
+        lemaksusuList.remove(position);
         mAdapter.notifyItemRemoved(position);
 
-        toggleEmptyBahanPakan();
+        toggleEmptyLemakSusu();
     }
 
     /**
@@ -167,9 +165,9 @@ public class BahanPakanActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                    showBahanPakanDialog(true, bahanPakanList.get(position), position);
+                    showLemakSusuDialog(true, lemaksusuList.get(position), position);
                 } else {
-                    deleteBahanPakan(position);
+                    deleteLemakSusu(position);
                 }
             }
         });
@@ -182,36 +180,32 @@ public class BahanPakanActivity extends AppCompatActivity {
      * when shouldUpdate=true, it automatically displays old note and changes the
      * button text to UPDATE
      */
-    private void showBahanPakanDialog(final boolean shouldUpdate, final BahanPakan bahan_pakan, final int position) {
+    private void showLemakSusuDialog(final boolean shouldUpdate, final LemakSusu LemakSusu, final int position) {
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
-        View view = layoutInflaterAndroid.inflate(R.layout.add_dialog_bahan_pakan, null);
+        View view = layoutInflaterAndroid.inflate(R.layout.add_dialog_lemak_susu, null);
 
-        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(BahanPakanActivity.this);
+        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(LemakSusuActivity.this);
         alertDialogBuilderUserInput.setView(view);
 
         
 
-        final EditText input_nama_pakan = view.findViewById(R.id.nama_pakan_BahanPakan);
-        final EditText input_tdn = view.findViewById(R.id.tdn_BahanPakan);
-        final EditText input_bk = view.findViewById(R.id.bk_BahanPakan);
-        final EditText input_pk = view.findViewById(R.id.pk_BahanPakan);
-        final EditText input_ca = view.findViewById(R.id.ca_BahanPakan);
-        final EditText input_p = view.findViewById(R.id.p_BahanPakan);
-        final EditText input_harga = view.findViewById(R.id.harga_BahanPakan);
+        final EditText input_persen_lemak = view.findViewById(R.id.persen_lemak_lemak_susu);
+        final EditText input_tdn = view.findViewById(R.id.tdn_lemak_susu);
+        final EditText input_pk = view.findViewById(R.id.pk_lemak_susu);
+        final EditText input_ca = view.findViewById(R.id.ca_lemak_susu);
+        final EditText input_p = view.findViewById(R.id.p_lemak_susu);
 
         TextView dialogTitle = view.findViewById(R.id.dialog_title);
-        dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_bahan_pakan_title) : getString(R.string.lbl_edit_bahan_pakan_title));
+        dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_lemak_susu_title) : getString(R.string.lbl_edit_lemak_susu_title));
 
 
-        if (shouldUpdate && bahan_pakan != null){
+        if (shouldUpdate && LemakSusu != null){
            
-            input_nama_pakan.setText(bahan_pakan.getNamaPakan().replace(",",""));
-        input_tdn.setText(nm.format(bahan_pakan.getTdn()).replace(",",""));
-        input_bk.setText(nm.format(bahan_pakan.getBk()).replace(",",""));
-        input_pk.setText(nm.format(bahan_pakan.getPk()).replace(",",""));
-        input_ca.setText(nm.format(bahan_pakan.getCa()).replace(",",""));
-        input_p.setText(nm.format(bahan_pakan.getP()).replace(",",""));
-        input_harga.setText(String.valueOf(bahan_pakan.getHarga()).replace(",",""));
+        input_persen_lemak.setText(nm.format(LemakSusu.getPersenLemak()).replace(",",""));
+        input_tdn.setText(nm.format(LemakSusu.getTdn()).replace(",",""));
+        input_pk.setText(nm.format(LemakSusu.getPk()).replace(",",""));
+        input_ca.setText(nm.format(LemakSusu.getCa()).replace(",",""));
+        input_p.setText(nm.format(LemakSusu.getP()).replace(",",""));
         }
 
 
@@ -237,55 +231,49 @@ public class BahanPakanActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // Show toast message when no text is entered
-                if (TextUtils.isEmpty(input_nama_pakan.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan nama pakan!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(input_persen_lemak.getText().toString())) {
+                    Toast.makeText(LemakSusuActivity.this, "Masukkan Persen Lemak!", Toast.LENGTH_SHORT).show();
                     return;
                 } if (TextUtils.isEmpty(input_tdn.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan tdn!", Toast.LENGTH_SHORT).show();
-                    return;
-                }if (TextUtils.isEmpty(input_bk.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan bk!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LemakSusuActivity.this, "Masukkan tdn!", Toast.LENGTH_SHORT).show();
                     return;
                 }if (TextUtils.isEmpty(input_pk.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan pk!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LemakSusuActivity.this, "Masukkan pk!", Toast.LENGTH_SHORT).show();
                     return;
                 }if (TextUtils.isEmpty(input_ca.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan ca!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LemakSusuActivity.this, "Masukkan ca!", Toast.LENGTH_SHORT).show();
                     return;
                 }if (TextUtils.isEmpty(input_p.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan p!", Toast.LENGTH_SHORT).show();
-                    return;
-                }if (TextUtils.isEmpty(input_harga.getText().toString())) {
-                    Toast.makeText(BahanPakanActivity.this, "Masukkan harga!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LemakSusuActivity.this, "Masukkan p!", Toast.LENGTH_SHORT).show();
                     return;
                 }else {
                     alertDialog.dismiss();
                 }
 
                 // check if user updating note
-                if (shouldUpdate && bahan_pakan != null) {
+                if (shouldUpdate && LemakSusu != null) {
                     // update note by it's id
-                    // updateBahanPakan(inputBahanPakan.getText().toString(), position);
-                    updateBahanPakan(input_nama_pakan.getText().toString(), Double.parseDouble(input_tdn.getText().toString()), Double.parseDouble(input_bk.getText().toString()), Double.parseDouble(input_pk.getText().toString()), Double.parseDouble(input_ca.getText().toString()), Double.parseDouble(input_p.getText().toString()), Integer.parseInt(input_harga.getText().toString()), position);
+                    // updateLemakSusu(inputLemakSusu.getText().toString(), position);
+                    updateLemakSusu(Double.parseDouble(input_tdn.getText().toString()), Double.parseDouble(input_persen_lemak.getText().toString()), Double.parseDouble(input_pk.getText().toString()), Double.parseDouble(input_ca.getText().toString()), Double.parseDouble(input_p.getText().toString()), position);
 
                 } else {
                     // create new note
-                    createBahanPakan(input_nama_pakan.getText().toString(), Double.parseDouble(input_tdn.getText().toString()), Double.parseDouble(input_bk.getText().toString()), Double.parseDouble(input_pk.getText().toString()), Double.parseDouble(input_ca.getText().toString()), Double.parseDouble(input_p.getText().toString()), Integer.parseInt(input_harga.getText().toString()));
+                    createLemakSusu(Double.parseDouble(input_tdn.getText().toString()), Double.parseDouble(input_persen_lemak.getText().toString()), Double.parseDouble(input_pk.getText().toString()), Double.parseDouble(input_ca.getText().toString()), Double.parseDouble(input_p.getText().toString()));
                 }
             }
         });
     }
 
     /**
-     * Toggling list and empty bahanPakan view
+     * Toggling list and empty lemaksusu view
      */
-    private void toggleEmptyBahanPakan() {
-        // you can check bahanPakanList.size() > 0
+    private void toggleEmptyLemakSusu() {
+        // you can check lemaksusuList.size() > 0
 
-        if (db.getBahanPakanCount() > 0) {
-            noBahanPakanView.setVisibility(View.GONE);
+        if (db.getLemakSusuCount() > 0) {
+            noLemakSusuView.setVisibility(View.GONE);
         } else {
-            noBahanPakanView.setVisibility(View.VISIBLE);
+            noLemakSusuView.setVisibility(View.VISIBLE);
         }
     }
 }

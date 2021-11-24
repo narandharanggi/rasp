@@ -1,4 +1,4 @@
-package com.cun.rasp.view.detailpakan;
+package com.cun.rasp.view.detailsapi;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.cun.rasp.Database.DatabaseHelper;
 import com.cun.rasp.R;
-import com.cun.rasp.model.DetailPakan;
+import com.cun.rasp.model.DetailSapi;
 import com.cun.rasp.utils.MyDividerItemDecoration;
 import com.cun.rasp.utils.RecyclerTouchListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -30,12 +30,12 @@ import java.util.List;
 
 
 
-public class DetailPakanActivity extends AppCompatActivity {
-    private DetailPakanAdapter mAdapter;
-    private List<DetailPakan> detailPakanList = new ArrayList<>();
+public class DetailSapiActivity extends AppCompatActivity {
+    private DetailSapiAdapter mAdapter;
+    private List<DetailSapi> detailsapiList = new ArrayList<>();
     private CoordinatorLayout coordinatorLayout;
     private RecyclerView recyclerView;
-    private TextView noDetailPakanView;
+    private TextView noDetailSapiView;
     NumberFormat nm = NumberFormat.getNumberInstance();
 
     private DatabaseHelper db;
@@ -43,33 +43,33 @@ public class DetailPakanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.detail_pakan_main);
+        setContentView(R.layout.detail_sapi_main);
 
 
-        coordinatorLayout = findViewById(R.id.coordinator_layout_detail_pakan);
-        recyclerView = findViewById(R.id.recycler_view_detail_pakan);
-        noDetailPakanView = findViewById(R.id.empty_detail_pakan_view);
+        coordinatorLayout = findViewById(R.id.coordinator_layout_detail_sapi);
+        recyclerView = findViewById(R.id.recycler_view_detail_sapi);
+        noDetailSapiView = findViewById(R.id.empty_detail_sapi_view);
 
         db = new DatabaseHelper(this);
 
-        detailPakanList.addAll(db.getAllDetailPakans());
+        detailsapiList.addAll(db.getAllDetailSapis());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_detail_pakan);
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_detail_sapi);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showDetailPakanDialog(false, null, -1);
+                showDetailSapiDialog(false, null, -1);
             }
         });
 
-        mAdapter = new DetailPakanAdapter(this, detailPakanList);
+        mAdapter = new DetailSapiAdapter(this, detailsapiList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new MyDividerItemDecoration(this, LinearLayoutManager.VERTICAL, 16));
         recyclerView.setAdapter(mAdapter);
 
-        toggleEmptyDetailPakan();
+        toggleEmptyDetailSapi();
 
         /**
          * On long press on RecyclerView item, open alert dialog
@@ -93,22 +93,22 @@ public class DetailPakanActivity extends AppCompatActivity {
      * Inserting new note in db
      * and refreshing the list
      */
-    private void createDetailPakan(int sapi, int bahan_pakan) {
+    private void createDetailSapi(int sapi, int lemak_susu, int perBB) {
         // inserting note in db and getting
         // newly inserted note id
-        long id = db.insertDetailPakan(sapi, bahan_pakan);
+        long id = db.insertDetailSapi(sapi, lemak_susu, perBB);
 
         // get the newly inserted note from db
-        DetailPakan n = db.getDetailPakan(id);
+        DetailSapi n = db.getDetailSapi(id);
 
         if (n != null) {
             // adding new note to array list at 0 position
-            detailPakanList.add(0, n);
+            detailsapiList.add(0, n);
 
             // refreshing the list
             mAdapter.notifyDataSetChanged();
 
-            toggleEmptyDetailPakan();
+            toggleEmptyDetailSapi();
         }
     }
 
@@ -116,37 +116,38 @@ public class DetailPakanActivity extends AppCompatActivity {
      * Updating note in db and updating
      * item in the list by its position
      */
-    private void updateDetailPakan(int sapi, int bahan_pakan, int position) {
-        DetailPakan n = detailPakanList.get(position);
+    private void updateDetailSapi(int sapi, int lemak_susu, int perBB, int position) {
+        DetailSapi n = detailsapiList.get(position);
         // updating note text
         n.setSapi(sapi);
-        n.setBahanPakan(bahan_pakan);
+        n.setLemakSusu(lemak_susu);
+        n.setperBB(perBB);
     
 
         // updating note in db
-        db.updateDetailPakan(n);
+        db.updateDetailSapi(n);
 
         // refreshing the list
-        detailPakanList.set(position, n);
+        detailsapiList.set(position, n);
         mAdapter.notifyItemChanged(position);
 
-        toggleEmptyDetailPakan();
+        toggleEmptyDetailSapi();
     }
 
     /**
      * Deleting note from SQLite and removing the
      * item from the list by its position
      */
-    private void deleteDetailPakan(int position) {
+    private void deleteDetailSapi(int position) {
         // deleting the note from db
-        DetailPakan DetailPakan_position = detailPakanList.get(position);
-        db.deleteDetailPakan(DetailPakan_position.getId());
+        DetailSapi DetailSapi_position = detailsapiList.get(position);
+        db.deleteDetailSapi(DetailSapi_position.getId());
 
         // removing the note from the list
-        detailPakanList.remove(position);
+        detailsapiList.remove(position);
         mAdapter.notifyItemRemoved(position);
 
-        toggleEmptyDetailPakan();
+        toggleEmptyDetailSapi();
     }
 
     /**
@@ -163,9 +164,9 @@ public class DetailPakanActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (which == 0) {
-                    showDetailPakanDialog(true, detailPakanList.get(position), position);
+                    showDetailSapiDialog(true, detailsapiList.get(position), position);
                 } else {
-                    deleteDetailPakan(position);
+                    deleteDetailSapi(position);
                 }
             }
         });
@@ -178,26 +179,29 @@ public class DetailPakanActivity extends AppCompatActivity {
      * when shouldUpdate=true, it automatically displays old note and changes the
      * button text to UPDATE
      */
-    private void showDetailPakanDialog(final boolean shouldUpdate, final DetailPakan DetailPakan, final int position) {
+    private void showDetailSapiDialog(final boolean shouldUpdate, final DetailSapi DetailSapi, final int position) {
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
-        View view = layoutInflaterAndroid.inflate(R.layout.add_dialog_detail_pakan, null);
+        View view = layoutInflaterAndroid.inflate(R.layout.add_dialog_detail_sapi, null);
 
-        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(DetailPakanActivity.this);
+        AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(DetailSapiActivity.this);
         alertDialogBuilderUserInput.setView(view);
 
-        
+        // int sapi, int lemak_susu, int perBB
 
-        final EditText input_sapi = view.findViewById(R.id.sapi_detail_pakan);
-        final EditText input_bahan_pakan = view.findViewById(R.id.bahan_pakan_detail_pakan);
+        final EditText input_sapi = view.findViewById(R.id.sapi_detail_sapi);
+        final EditText input_lemak_susu = view.findViewById(R.id.lemak_susu_detail_sapi);
+        final EditText input_perBB = view.findViewById(R.id.perBB_detail_sapi);
 
         TextView dialogTitle = view.findViewById(R.id.dialog_title);
-        dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_detail_pakan_title) : getString(R.string.lbl_edit_detail_pakan_title));
+        dialogTitle.setText(!shouldUpdate ? getString(R.string.lbl_new_detail_sapi_title) : getString(R.string.lbl_edit_detail_sapi_title));
 
 
-        if (shouldUpdate && DetailPakan != null){
+        if (shouldUpdate && DetailSapi != null){
            
-        input_sapi.setText(nm.format(DetailPakan.getSapi()).replace(",",""));
-        input_bahan_pakan.setText(nm.format(DetailPakan.getBahanPakan()).replace(",",""));
+
+        input_sapi.setText(nm.format(DetailSapi.getSapi()).replace(",",""));
+        input_lemak_susu.setText(nm.format(DetailSapi.getLemakSusu()).replace(",",""));
+        input_perBB.setText(nm.format(DetailSapi.getperBB()).replace(",",""));
         }
 
 
@@ -224,39 +228,42 @@ public class DetailPakanActivity extends AppCompatActivity {
 
                 // Show toast message when no text is entered
                 if (TextUtils.isEmpty(input_sapi.getText().toString())) {
-                    Toast.makeText(DetailPakanActivity.this, "Masukkan Keterangan Sapi!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DetailSapiActivity.this, "Masukkan Keterangan Sapi!", Toast.LENGTH_SHORT).show();
                     return;
-                } if (TextUtils.isEmpty(input_bahan_pakan.getText().toString())) {
-                    Toast.makeText(DetailPakanActivity.this, "Masukkan Keterangan Bahan Pakan!", Toast.LENGTH_SHORT).show();
+                } if (TextUtils.isEmpty(input_lemak_susu.getText().toString())) {
+                    Toast.makeText(DetailSapiActivity.this, "Masukkan Keterangan Lemak Susu!", Toast.LENGTH_SHORT).show();
+                    return;
+                }if (TextUtils.isEmpty(input_perBB.getText().toString())) {
+                    Toast.makeText(DetailSapiActivity.this, "Masukkan Keterangan perBB!", Toast.LENGTH_SHORT).show();
                     return;
                 }else {
                     alertDialog.dismiss();
                 }
 
                 // check if user updating note
-                if (shouldUpdate && DetailPakan != null) {
+                if (shouldUpdate && DetailSapi != null) {
                     // update note by it's id
-                    // updateDetailPakan(inputDetailPakan.getText().toString(), position);
-                    updateDetailPakan(Integer.parseInt(input_sapi.getText().toString()), Integer.parseInt(input_bahan_pakan.getText().toString()), position);
+                    // updateDetailSapi(inputDetailSapi.getText().toString(), position);
+                    updateDetailSapi(Integer.parseInt(input_sapi.getText().toString()), Integer.parseInt(input_lemak_susu.getText().toString()), Integer.parseInt(input_perBB.getText().toString()), position);
 
                 } else {
                     // create new note
-                    createDetailPakan(Integer.parseInt(input_sapi.getText().toString()), Integer.parseInt(input_bahan_pakan.getText().toString()));
+                    createDetailSapi(Integer.parseInt(input_sapi.getText().toString()), Integer.parseInt(input_lemak_susu.getText().toString()), Integer.parseInt(input_perBB.getText().toString()));
                 }
             }
         });
     }
 
     /**
-     * Toggling list and empty detailPakan view
+     * Toggling list and empty detailsapi view
      */
-    private void toggleEmptyDetailPakan() {
-        // you can check detailPakanList.size() > 0
+    private void toggleEmptyDetailSapi() {
+        // you can check detailsapiList.size() > 0
 
-        if (db.getDetailPakanCount() > 0) {
-            noDetailPakanView.setVisibility(View.GONE);
+        if (db.getDetailSapiCount() > 0) {
+            noDetailSapiView.setVisibility(View.GONE);
         } else {
-            noDetailPakanView.setVisibility(View.VISIBLE);
+            noDetailSapiView.setVisibility(View.VISIBLE);
         }
     }
 }

@@ -115,7 +115,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return id;
     }
 
-    public long insertLemakSusu(String persen_lemak, Double tdn, Double pk, Double ca, Double p) {
+    public long insertLemakSusu(Double persen_lemak, Double tdn, Double pk, Double ca, Double p) {
         // get writable database as we want to write data
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -944,6 +944,32 @@ public List<BahanPakan> getAllBahanPakans() {
     
     public int getDetailPakanCount() {
         String countQuery = "SELECT  * FROM " + DetailPakan.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
+   
+    public int getDetailSapiCount() {
+        String countQuery = "SELECT  * FROM " + DetailSapi.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
+    
+    public int getLemakSusuCount() {
+        String countQuery = "SELECT  * FROM " + LemakSusu.TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
      

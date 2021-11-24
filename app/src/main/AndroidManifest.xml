@@ -44,6 +44,14 @@
         <activity
             android:name=".view.detailpakan.DetailPakanActivity"
             android:exported="true" />
+       
+        <activity
+            android:name=".view.detailsapi.DetailSapiActivity"
+            android:exported="true" />
+        
+        <activity
+            android:name=".view.lemaksusu.LemakSusuActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

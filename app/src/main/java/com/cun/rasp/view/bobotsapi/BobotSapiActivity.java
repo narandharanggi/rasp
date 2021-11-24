@@ -201,11 +201,11 @@ public class BobotSapiActivity extends AppCompatActivity {
 
         if (shouldUpdate && BobotSapi != null){
            
-        input_bobot.setText(nm.format(BobotSapi.getBobot()));
-        input_tdn.setText(nm.format(BobotSapi.getTdn()));
-        input_pk.setText(nm.format(BobotSapi.getPk()));
-        input_ca.setText(nm.format(BobotSapi.getCa()));
-        input_p.setText(nm.format(BobotSapi.getP()));
+        input_bobot.setText(nm.format(BobotSapi.getBobot()).replace(",",""));
+        input_tdn.setText(nm.format(BobotSapi.getTdn()).replace(",",""));
+        input_pk.setText(nm.format(BobotSapi.getPk()).replace(",",""));
+        input_ca.setText(nm.format(BobotSapi.getCa()).replace(",",""));
+        input_p.setText(nm.format(BobotSapi.getP()).replace(",",""));
         }
 
 
