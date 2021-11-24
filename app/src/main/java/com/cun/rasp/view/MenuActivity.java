@@ -23,7 +23,7 @@ public class MenuActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent i = new Intent(MenuActivity.this,BahanPakanActivity.class);
+                        Intent i = new Intent(MenuActivity.this,UbahDataActivity.class);
                         startActivity(i);
                     }
                 }

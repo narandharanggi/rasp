@@ -13,14 +13,16 @@
         android:theme="@style/Theme.Rasp">
         <activity
             android:name=".view.UbahDataActivity"
-            android:exported="true" />
+            android:exported="true">
+        
+        </activity>
         <activity
             android:name=".view.MenuActivity"
             android:exported="true" />
         <activity
             android:name=".view.SplashActivity"
             android:exported="true">
-            <intent-filter>
+    <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -33,7 +35,7 @@
             android:name=".MainActivity"
             android:exported="true" />
         <activity
-            android:name=".view.BahanPakanActivity"
+            android:name=".view.bahanpakan.BahanPakanActivity"
             android:exported="true" />
     </application>
 

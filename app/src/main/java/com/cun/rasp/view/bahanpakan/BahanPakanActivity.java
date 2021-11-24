@@ -1,4 +1,4 @@
-package com.cun.rasp.view;
+package com.cun.rasp.view.bahanpakan;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -120,13 +119,13 @@ public class BahanPakanActivity extends AppCompatActivity {
     private void updateBahanPakan(String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga, int position) {
         BahanPakan n = bahanPakanList.get(position);
         // updating note text
-        n.setBk(bk);
         n.setNamaPakan(nama_pakan);
-        n.setCa(ca);
-        n.setHarga(harga);
-        n.setP(p);
-        n.setPk(pk);
         n.setTdn(tdn);
+        n.setBk(bk);
+        n.setPk(pk);
+        n.setCa(ca);
+        n.setP(p);
+        n.setHarga(harga);
 
         // updating note in db
         db.updateBahanPakan(n);
@@ -160,10 +159,10 @@ public class BahanPakanActivity extends AppCompatActivity {
      * Delete - 0
      */
     private void showActionsDialog(final int position) {
-        CharSequence colors[] = new CharSequence[]{"Edit", "Delete"};
+        CharSequence colors[] = new CharSequence[]{"Ubah", "Hapus"};
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Choose option");
+        builder.setTitle("Pilih Menu");
         builder.setItems(colors, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {

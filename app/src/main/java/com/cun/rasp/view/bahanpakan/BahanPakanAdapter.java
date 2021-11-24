@@ -1,9 +1,7 @@
-package com.cun.rasp.view;
+package com.cun.rasp.view.bahanpakan;
 
 import android.content.Context;
 
-import android.provider.ContactsContract;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +13,6 @@ import com.cun.rasp.R;
 import com.cun.rasp.model.BahanPakan;
 
 import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
  
@@ -41,13 +36,13 @@ public class BahanPakanAdapter extends RecyclerView.Adapter<BahanPakanAdapter.My
  
         public MyViewHolder(View view) {
             super(view);
-            nama_pakan = view.findViewById(R.id.nama_pakan_BahanPakan);
-            tdn = view.findViewById(R.id.tdn_BahanPakan);
-            bk = view.findViewById(R.id.bk_BahanPakan);
-            pk = view.findViewById(R.id.pk_BahanPakan);
-            ca = view.findViewById(R.id.ca_BahanPakan);
-            p = view.findViewById(R.id.p_BahanPakan);
-            harga = view.findViewById(R.id.harga_BahanPakan);
+            nama_pakan = view.findViewById(R.id.nama_pakan_BahanPakan_data_row_list);
+            tdn = view.findViewById(R.id.tdn_BahanPakan_data_row_list);
+            bk = view.findViewById(R.id.bk_BahanPakan_data_row_list);
+            pk = view.findViewById(R.id.pk_BahanPakan_data_row_list);
+            ca = view.findViewById(R.id.ca_BahanPakan_data_row_list);
+            p = view.findViewById(R.id.p_BahanPakan_data_row_list);
+            harga = view.findViewById(R.id.harga_BahanPakan_data_row_list);
         }
     }
  
