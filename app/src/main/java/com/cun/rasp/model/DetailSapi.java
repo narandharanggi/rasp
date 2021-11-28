@@ -2,12 +2,12 @@ package com.cun.rasp.model;
 
 public class DetailSapi {
     public static final String TABLE_NAME = "detail_sapi";
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_SAPI = "sapi";
     public static final String COLUMN_LEMAK_SUSU = "lemak_susu";
     public static final String COLUMN_perBB = "perBB";
 
-    private int id;
+    private int kode;
     private int sapi;
     private int lemak_susu;
     private int perBB;
@@ -19,17 +19,17 @@ public class DetailSapi {
                     + COLUMN_SAPI + " INTEGER,"
                     + COLUMN_LEMAK_SUSU + " INTEGER,"
                     + COLUMN_perBB + " INTEGER,"
-                    + "FOREIGN KEY (" + COLUMN_SAPI + ") REFERENCES " + "sapi" + "(id),"
-                    + "FOREIGN KEY (" + COLUMN_LEMAK_SUSU + ") REFERENCES " + "lemak_susu" + "(id),"
-                    + "FOREIGN KEY (" + COLUMN_perBB + ") REFERENCES " + "perBB" + "(id)"
+                    + "FOREIGN KEY (" + COLUMN_SAPI + ") REFERENCES " + "sapi" + "(kode),"
+                    + "FOREIGN KEY (" + COLUMN_LEMAK_SUSU + ") REFERENCES " + "lemak_susu" + "(kode),"
+                    + "FOREIGN KEY (" + COLUMN_perBB + ") REFERENCES " + "perBB" + "(kode)"
                     + ")";
 
 
     public DetailSapi() {
     }
 
-    public DetailSapi(int id, int sapi, int lemak_susu, int perBB) {
-        this.id = id;
+    public DetailSapi(int kode, int sapi, int lemak_susu, int perBB) {
+        this.kode = kode;
         this.sapi = sapi;
         this.lemak_susu = lemak_susu;
         this.perBB = perBB;
@@ -37,7 +37,7 @@ public class DetailSapi {
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public int getSapi() {
@@ -53,8 +53,8 @@ public class DetailSapi {
     }
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setSapi(int sapi) {

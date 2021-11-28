@@ -3,14 +3,14 @@ package com.cun.rasp.model;
 public class BobotSapi {
     public static final String TABLE_NAME = "bobot_sapi";
 
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_BOBOT = "bobot";
     public static final String COLUMN_TDN = "tdn";
     public static final String COLUMN_PK = "pk";
     public static final String COLUMN_CA = "ca";
     public static final String COLUMN_P = "p";
 
-    private int id;
+    private int kode;
     private Double bobot;
     private Double tdn;
     private Double pk;
@@ -32,8 +32,8 @@ public class BobotSapi {
     public BobotSapi() {
     }
 
-    public BobotSapi(int id, Double bobot, Double tdn, Double pk, Double ca, Double p) {
-        this.id = id;
+    public BobotSapi(int kode, Double bobot, Double tdn, Double pk, Double ca, Double p) {
+        this.kode = kode;
         this.bobot = bobot;
         this.tdn = tdn;
         this.pk = pk;
@@ -43,7 +43,7 @@ public class BobotSapi {
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public Double getBobot() {
@@ -68,8 +68,8 @@ public class BobotSapi {
 
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setBobot(Double bobot) {

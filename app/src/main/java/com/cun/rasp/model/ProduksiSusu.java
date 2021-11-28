@@ -3,11 +3,11 @@ package com.cun.rasp.model;
 public class ProduksiSusu {
     public static final String TABLE_NAME = "produksi_susu";
 
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_PRODUKSI_SUSU = "produksi_susu";
 
 
-    private int id;
+    private int kode;
     private int produksi_susu;
 
 
@@ -21,14 +21,14 @@ public class ProduksiSusu {
     public ProduksiSusu() {
     }
 
-    public ProduksiSusu(int id, int produksi_susu) {
-        this.id = id;
+    public ProduksiSusu(int kode, int produksi_susu) {
+        this.kode = kode;
         this.produksi_susu = produksi_susu;
     }
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public int getProduksiSusu() {
@@ -36,8 +36,8 @@ public class ProduksiSusu {
     }
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setProduksiSusu(int produksi_susu) {

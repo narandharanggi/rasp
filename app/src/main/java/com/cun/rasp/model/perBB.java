@@ -3,12 +3,12 @@ package com.cun.rasp.model;
 public class perBB {
     public static final String TABLE_NAME = "perBB";
 
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_KETERANGAN = "keterangan";
     public static final String COLUMN_TDN = "tdn";
     public static final String COLUMN_PK = "pk";
 
-    private int id;
+    private int kode;
     private String keterangan;
     private Double tdn;
     private Double pk;
@@ -25,8 +25,8 @@ public class perBB {
     public perBB() {
     }
 
-    public perBB(int id, String keterangan, Double tdn, Double pk) {
-        this.id = id;
+    public perBB(int kode, String keterangan, Double tdn, Double pk) {
+        this.kode = kode;
         this.keterangan = keterangan;
         this.tdn = tdn;
         this.pk = pk;
@@ -34,7 +34,7 @@ public class perBB {
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public String getKeterangan() {
@@ -50,8 +50,8 @@ public class perBB {
     }
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setKeterangan(String keterangan) {

@@ -3,7 +3,7 @@ package com.cun.rasp.model;
 public class BahanPakan {
     public static final String TABLE_NAME = "bahan_pakan";
 
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_NAMA_PAKAN = "nama_pakan";
     public static final String COLUMN_BK = "bk";
     public static final String COLUMN_TDN = "tdn";
@@ -12,7 +12,7 @@ public class BahanPakan {
     public static final String COLUMN_P = "p";
     public static final String COLUMN_HARGA = "harga";
 
-    private int id;
+    private int kode;
     private String nama_pakan;
     private Double tdn;
     private Double bk;
@@ -37,8 +37,8 @@ public class BahanPakan {
     public BahanPakan() {
     }
 
-    public BahanPakan(int id, String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga) {
-        this.id = id;
+    public BahanPakan(int kode, String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga) {
+        this.kode = kode;
         this.nama_pakan = nama_pakan;
         this.bk = bk;
         this.tdn = tdn;
@@ -50,7 +50,7 @@ public class BahanPakan {
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public String getNamaPakan() {
@@ -82,8 +82,8 @@ public class BahanPakan {
 
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setNamaPakan(String nama_pakan) {

@@ -3,14 +3,14 @@ package com.cun.rasp.model;
 public class LemakSusu {
     public static final String TABLE_NAME = "lemak_susu";
 
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_PERSEN_LEMAK = "persen_lemak";
     public static final String COLUMN_TDN = "tdn";
     public static final String COLUMN_PK = "pk";
     public static final String COLUMN_CA = "ca";
     public static final String COLUMN_P = "p";
 
-    private int id;
+    private int kode;
     private Double persen_lemak;
     private Double tdn;
     private Double pk;
@@ -31,8 +31,8 @@ public class LemakSusu {
     public LemakSusu() {
     }
 
-    public LemakSusu(int id, Double persen_lemak, Double tdn, Double pk, Double ca, Double p) {
-        this.id = id;
+    public LemakSusu(int kode, Double persen_lemak, Double tdn, Double pk, Double ca, Double p) {
+        this.kode = kode;
         this.persen_lemak = persen_lemak;
         this.tdn = tdn;
         this.pk = pk;
@@ -42,7 +42,7 @@ public class LemakSusu {
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public Double getPersenLemak() {
@@ -67,8 +67,8 @@ public class LemakSusu {
 
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setPersenLemak(Double persen_lemak) {

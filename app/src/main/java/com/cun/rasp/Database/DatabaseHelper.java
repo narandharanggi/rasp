@@ -30,46 +30,54 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Database Name
     private static final String DATABASE_NAME = "ransumGan";
+    public DatabaseHelperExisting myDbHelper;
+    private SQLiteDatabase dbExist;
+
+//    private static final SQLiteDatabase db = DatabaseHelperExisting.
 
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        myDbHelper = new DatabaseHelperExisting(context);
+        dbExist = myDbHelper.openDataBase();
+        // Log.e("LocAndroid heheheh", String.valueOf(dbExist));
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("PRAGMA foreign_keys=ON;");
-        // creating required tables
-        db.execSQL(ProduksiSusu.CREATE_TABLE_PRODUKSI_SUSU);
-        db.execSQL(LemakSusu.CREATE_TABLE_LEMAK_SUSU);
-        db.execSQL(perBB.CREATE_TABLE_PERBB);
-        db.execSQL(BahanPakan.CREATE_TABLE_BAHAN_PAKAN);
-        db.execSQL(BobotSapi.CREATE_TABLE_BOBOT_SAPI);
-        db.execSQL(Sapi.CREATE_TABLE_SAPI);
-        db.execSQL(DetailPakan.CREATE_TABLE_DETAIL_PAKAN);
-        db.execSQL(DetailSapi.CREATE_TABLE_DETAIL_SAPI);
+        // db.execSQL("PRAGMA foreign_keys=ON;");
+        // // creating required tables
+        // db.execSQL(ProduksiSusu.CREATE_TABLE_PRODUKSI_SUSU);
+        // db.execSQL(LemakSusu.CREATE_TABLE_LEMAK_SUSU);
+        // db.execSQL(perBB.CREATE_TABLE_PERBB);
+        // db.execSQL(BahanPakan.CREATE_TABLE_BAHAN_PAKAN);
+        // db.execSQL(BobotSapi.CREATE_TABLE_BOBOT_SAPI);
+        // db.execSQL(Sapi.CREATE_TABLE_SAPI);
+        // db.execSQL(DetailPakan.CREATE_TABLE_DETAIL_PAKAN);
+        // db.execSQL(DetailSapi.CREATE_TABLE_DETAIL_SAPI);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + Sapi.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + BahanPakan.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + BobotSapi.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + DetailPakan.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + DetailSapi.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + LemakSusu.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + perBB.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + ProduksiSusu.TABLE_NAME);
+        // // on upgrade drop older tables
+        // db.execSQL("DROP TABLE IF EXISTS " + Sapi.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + BahanPakan.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + BobotSapi.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + DetailPakan.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + DetailSapi.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + LemakSusu.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + perBB.TABLE_NAME);
+        // db.execSQL("DROP TABLE IF EXISTS " + ProduksiSusu.TABLE_NAME);
 
-        // create new tables
-        onCreate(db);
+        // // create new tables
+        // onCreate(db);
     }
 
     //insert database
     public long insertBahanPakan(String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -94,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertBobotSapi(Double bobot, Double tdn, Double pk, Double ca, Double p) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -117,7 +125,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertLemakSusu(Double persen_lemak, Double tdn, Double pk, Double ca, Double p) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -140,7 +148,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertPerBB(String keterangan, Double tdn, Double pk) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -161,7 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertProduksiSusu(int produksi_susu) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -181,7 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertDetailPakan(int sapi, int bahan_pakan) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -202,7 +210,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertSapi(int bobot, int produksi_susu, Double bk) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -224,7 +232,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public long insertDetailSapi(int sapi, int lemak_susu, int perBB) {
         // get writable database as we want to write data
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -683,7 +691,7 @@ public List<BahanPakan> getAllBahanPakans() {
 
 //updateee
     public int updateBahanPakan(BahanPakan bahanpakan) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
     
@@ -707,7 +715,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
  
     public int updateBobotSapi(BobotSapi bobotsapi) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
 
@@ -730,7 +738,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
  
     public int updateDetailPakan(DetailPakan detailpakan) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
 
@@ -750,7 +758,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
 
     public int updateDetailSapi(DetailSapi detailsapi) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
 
@@ -770,7 +778,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
 
     public int updateLemakSusu(LemakSusu lemaksusu) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
 
@@ -793,7 +801,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
     
     public int updateperBB(perBB perbb) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
             // values.put(perBB.COLUMN_ID, perbb.getId());
@@ -811,7 +819,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
     
     public int updateProduksiSusu(ProduksiSusu produksisusu) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         values.put(ProduksiSusu.COLUMN_ID, produksisusu.getId());
@@ -828,7 +836,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
 
     public int updateSapi(Sapi sapi) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
 
         ContentValues values = new ContentValues();
         values.put(Sapi.COLUMN_ID, sapi.getId());
@@ -848,7 +856,7 @@ public List<BahanPakan> getAllBahanPakans() {
 
     /// delete
     public void deleteSapi(long Sapi_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(Sapi.TABLE_NAME, Sapi.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(Sapi_id) });
         closeDB();
@@ -856,7 +864,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
    
     public void deleteProduksiSusu(long ProduksiSusu_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(ProduksiSusu.TABLE_NAME, ProduksiSusu.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(ProduksiSusu_id) });
         closeDB();
@@ -864,7 +872,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
     
     public void deleteperBB(long perBB_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(perBB.TABLE_NAME, perBB.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(perBB_id) });
         closeDB();
@@ -872,7 +880,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
   
     public void deleteLemakSusu(long LemakSusu_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(LemakSusu.TABLE_NAME, LemakSusu.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(LemakSusu_id) });
         closeDB();
@@ -880,7 +888,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
   
     public void deleteDetailSapi(long DetailSapi_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(DetailSapi.TABLE_NAME, DetailSapi.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(DetailSapi_id) });
         closeDB();
@@ -888,7 +896,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
  
     public void deleteDetailPakan(long DetailPakan_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(DetailPakan.TABLE_NAME, DetailPakan.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(DetailPakan_id) });
         closeDB();
@@ -896,7 +904,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
   
     public void deleteBobotSapi(long BobotSapi_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(BobotSapi.TABLE_NAME, BobotSapi.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(BobotSapi_id) });
         closeDB();
@@ -904,7 +912,7 @@ public List<BahanPakan> getAllBahanPakans() {
     }
 
     public void deleteBahanPakan(long BahanPakan_id) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = dbExist;
         db.delete(BahanPakan.TABLE_NAME, BahanPakan.COLUMN_ID + " = ?",
                 new String[] { String.valueOf(BahanPakan_id) });
         closeDB();

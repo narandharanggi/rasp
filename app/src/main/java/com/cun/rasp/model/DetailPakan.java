@@ -2,11 +2,11 @@ package com.cun.rasp.model;
 
 public class DetailPakan {
     public static final String TABLE_NAME = "detail_pakan";
-    public static final String COLUMN_ID = "id";
+    public static final String COLUMN_ID = "kode";
     public static final String COLUMN_SAPI = "sapi";
     public static final String COLUMN_BAHAN_PAKAN = "bahan_pakan";
 
-    private int id;
+    private int kode;
     private int sapi;
     private int bahan_pakan;
 
@@ -16,23 +16,23 @@ public class DetailPakan {
                     + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + COLUMN_SAPI + " INTEGER,"
                     + COLUMN_BAHAN_PAKAN + " INTEGER,"
-                    + "FOREIGN KEY (" + COLUMN_SAPI + ") REFERENCES " + "detail_sapi" + "(id),"
-                    + "FOREIGN KEY (" + COLUMN_BAHAN_PAKAN + ") REFERENCES " + "bahan_pakan" + "(id)"
+                    + "FOREIGN KEY (" + COLUMN_SAPI + ") REFERENCES " + "detail_sapi" + "(kode),"
+                    + "FOREIGN KEY (" + COLUMN_BAHAN_PAKAN + ") REFERENCES " + "bahan_pakan" + "(kode)"
                     + ")";
 
 
     public DetailPakan() {
     }
 
-    public DetailPakan(int id, int sapi, int bahan_pakan) {
-        this.id = id;
+    public DetailPakan(int kode, int sapi, int bahan_pakan) {
+        this.kode = kode;
         this.sapi = sapi;
         this.bahan_pakan = bahan_pakan;
     }
 
     //getter
     public int getId() {
-        return id;
+        return kode;
     }
 
     public int getSapi() {
@@ -44,8 +44,8 @@ public class DetailPakan {
     }
 
     //setter
-    public void setId(int id) {
-        this.id = id;
+    public void setId(int kode) {
+        this.kode = kode;
     }
 
     public void setSapi(int sapi) {
