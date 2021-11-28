@@ -52,6 +52,16 @@
         <activity
             android:name=".view.lemaksusu.LemakSusuActivity"
             android:exported="true" />
+
+         <activity
+            android:name=".view.perBB.perBBActivity"
+            android:exported="true" />
+         <activity
+            android:name=".view.produksisusu.ProduksiSusuActivity"
+            android:exported="true" />
+         <activity
+            android:name=".view.sapi.SapiActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

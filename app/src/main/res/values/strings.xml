@@ -13,6 +13,12 @@
     <string name="lbl_edit_detail_sapi_title">Edit Detail Sapi</string>
     <string name="lbl_new_lemak_susu_title">Tambah Lemak Susu</string>
     <string name="lbl_edit_lemak_susu_title">Edit Lemak Susu</string>
+    <string name="lbl_new_perbb_title">Tambah perBB</string>
+    <string name="lbl_edit_perbb_title">Edit perBB</string>
+    <string name="lbl_new_produksi_susu_title">Tambah Produksi Susu</string>
+    <string name="lbl_edit_produksi_susu_title">Edit Produksi Susu</string>
+    <string name="lbl_new_sapi_title">Tambah Sapi</string>
+    <string name="lbl_edit_sapi_title">Edit Sapi</string>
     <!-- <string name="hint_enter_note">Enter your note!</string> -->
     <string name="next">Lanjut</string>
 </resources>

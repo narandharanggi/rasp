@@ -980,4 +980,43 @@ public List<BahanPakan> getAllBahanPakans() {
         // return count
         return count;
     }
+    
+    public int getperBBCount() {
+        String countQuery = "SELECT  * FROM " + perBB.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
+  
+    public int getProduksiSusuCount() {
+        String countQuery = "SELECT  * FROM " + ProduksiSusu.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
+    
+    public int getSapiCount() {
+        String countQuery = "SELECT  * FROM " + Sapi.TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+     
+        int count = cursor.getCount();
+        cursor.close();
+     
+     
+        // return count
+        return count;
+    }
 }

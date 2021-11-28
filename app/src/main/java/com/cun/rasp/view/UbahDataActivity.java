@@ -13,9 +13,12 @@ import com.cun.rasp.view.bobotsapi.BobotSapiActivity;
 import com.cun.rasp.view.detailpakan.DetailPakanActivity;
 import com.cun.rasp.view.detailsapi.DetailSapiActivity;
 import com.cun.rasp.view.lemaksusu.LemakSusuActivity;
+import com.cun.rasp.view.perBB.perBBActivity;
+import com.cun.rasp.view.produksisusu.ProduksiSusuActivity;
+import com.cun.rasp.view.sapi.SapiActivity;
 
 public class UbahDataActivity extends AppCompatActivity {
-    TextView bahan_pakan_textview, bobot_sapi_textview, detail_pakan_textview, detail_sapi_textview, lemak_susu_textview;
+    TextView bahan_pakan_textview, bobot_sapi_textview, detail_pakan_textview, detail_sapi_textview, lemak_susu_textview, perBB_textview, produksi_susu_textview, sapi_textview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,6 +79,42 @@ public class UbahDataActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent i = new Intent(UbahDataActivity.this, LemakSusuActivity.class);
+                        startActivity(i);
+                    }
+                }
+        );
+        
+        //navigate to perBB
+        perBB_textview = findViewById(R.id.perBB_list_menu);
+        perBB_textview.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(UbahDataActivity.this, perBBActivity.class);
+                        startActivity(i);
+                    }
+                }
+        );
+       
+        //navigate to produksi_susu
+        produksi_susu_textview = findViewById(R.id.produksi_susu_list_menu);
+        produksi_susu_textview.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(UbahDataActivity.this, ProduksiSusuActivity.class);
+                        startActivity(i);
+                    }
+                }
+        );
+       
+        //navigate to sapi
+        sapi_textview = findViewById(R.id.sapi_list_menu);
+        sapi_textview.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(UbahDataActivity.this, SapiActivity.class);
                         startActivity(i);
                     }
                 }
