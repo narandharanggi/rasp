@@ -1,5 +1,4 @@
 package com.cun.rasp.Database;
-
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
@@ -20,28 +19,117 @@ import com.cun.rasp.model.Sapi;
 import com.cun.rasp.model.perBB;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteAssetHelper {
 
-    // Logcat tag
-    private static final String LOG = "DatabaseHelper";
+public class DatabaseHelperBackup1 extends SQLiteOpenHelper 
+{
+    private static final String LOG = "DatabseHelper";
+    private static String TAG = "DatabaseHelperBackup1"; // Tag just for the LogCat window
+//destination path (location) of our database on device 
+private static String DB_PATH = "";  
+//private static String DB_NAME ="(students).sqlite";// Database name 
+private static String DB_NAME ="data.sqlite";
+private SQLiteDatabase mDataBase;  
+private final Context mContext; 
 
-    // Database Version
-    private static final int DATABASE_VERSION = 1;
-    // Database Name
-    private static final String DATABASE_NAME = "data.sqlite";
+public DatabaseHelperBackup1(Context context)  
+{ 
+    super(context, DB_NAME, null, 1);// 1? its Database Version 
+    DB_PATH = "/data/data/" + context.getPackageName() + "/databases/"; 
+    Log.i(TAG, DB_PATH);
+    this.mContext = context; 
+}    
 
+public void createDataBase() 
+{ 
+    //If database not exists copy it from the assets 
 
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        
+    boolean mDataBaseExist = checkDataBase(); 
+    if(!mDataBaseExist) 
+    { 
+        this.getReadableDatabase(); 
+        this.close(); 
+        try  
+        { 
+            //Copy the database from assests 
+            copyDataBase(); 
+            Log.e(TAG, "createDatabase database created"); 
+        }  
+        catch (IOException mIOException)  
+        { 
+             Log.i(TAG, "createDataBase "+mIOException+"");
+        } 
+    } 
+} 
+    //Check that the database exists here: /data/data/your package/databases/Da Name 
+    private boolean checkDataBase() 
+    { 
+        File dbFile = new File(DB_PATH + DB_NAME);
+        Log.v("dbFile", dbFile + "   "+ dbFile.exists());
+        return dbFile.exists(); 
+    } 
 
+    //Copy the database from assets 
+    private void copyDataBase() throws IOException 
+    {  try  
+    { 
+        InputStream mInput = mContext.getAssets().open(DB_NAME);
+        String outFileName = DB_PATH + DB_NAME; 
+        OutputStream mOutput = new FileOutputStream(outFileName);
+        byte[] mBuffer = new byte[1024]; 
+        int mLength; 
+        while ((mLength = mInput.read(mBuffer))>0) 
+        { 
+            mOutput.write(mBuffer, 0, mLength); 
+        } 
+        mOutput.flush(); 
+        mOutput.close(); 
+        mInput.close(); 
+    }  
+    catch (IOException mIOException)  
+    { Log.i(TAG,"copyDataBase "+ mIOException+"");
+
+    } 
+    } 
+
+    //Open the database, so we can query it 
+    public boolean openDataBase() throws SQLException 
+    { 
+        String mPath = DB_PATH + DB_NAME; 
+        //Log.v("mPath", mPath); 
+        mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.CREATE_IF_NECESSARY); 
+        //mDataBase = SQLiteDatabase.openDatabase(mPath, null, SQLiteDatabase.NO_LOCALIZED_COLLATORS); 
+        return mDataBase != null; 
+    } 
+
+    @Override 
+    public synchronized void close()  
+    { 
+        if(mDataBase != null) 
+            mDataBase.close(); 
+        super.close(); 
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase arg0) {
+        // TODO Auto-generated method stub
 
     }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        // TODO Auto-generated method stub
+
+    }
+    
+    
     //insert database
     public long insertBahanPakan(String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga) {
         // get writable database as we want to write data
@@ -1008,4 +1096,5 @@ public List<BahanPakan> getAllBahanPakans() {
         // return count
         return count;
     }
-}
+
+} 
