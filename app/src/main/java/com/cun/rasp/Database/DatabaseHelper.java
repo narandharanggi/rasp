@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -16,11 +17,13 @@ import com.cun.rasp.model.LemakSusu;
 import com.cun.rasp.model.ProduksiSusu;
 import com.cun.rasp.model.Sapi;
 import com.cun.rasp.model.perBB;
+import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class DatabaseHelper extends SQLiteAssetHelper {
 
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
@@ -29,55 +32,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "ransumGan";
+    private static final String DATABASE_NAME = "data.sqlite";
+    private static String DB_PATH="data/data/com.cun.rasp/databases/";
+    private static final String DB_NAME="data.sqlite";
     public DatabaseHelperExisting myDbHelper;
     private SQLiteDatabase dbExist;
+    private Void createDB;
 
 //    private static final SQLiteDatabase db = DatabaseHelperExisting.
-
+//    private final static String DATABASE_PATH ="/data/data/com.yourpackagename/databases/";
+    public SQLiteDatabase openDatabase() throws SQLException {
+        String myPath = DB_PATH + DATABASE_NAME;
+        SQLiteDatabase myDataBase = SQLiteDatabase.openOrCreateDatabase(myPath, null, null);
+        return myDataBase;
+    }
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        myDbHelper = new DatabaseHelperExisting(context);
-        dbExist = myDbHelper.openDataBase();
+        // myDbHelper = new DatabaseHelperExisting(context);
+//        String myPath = DB_PATH+DATABASE_NAME;
+        // dbExist = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READWRITE);
+        dbExist = openDatabase();
         // Log.e("LocAndroid heheheh", String.valueOf(dbExist));
 
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        // db.execSQL("PRAGMA foreign_keys=ON;");
-        // // creating required tables
-        // db.execSQL(ProduksiSusu.CREATE_TABLE_PRODUKSI_SUSU);
-        // db.execSQL(LemakSusu.CREATE_TABLE_LEMAK_SUSU);
-        // db.execSQL(perBB.CREATE_TABLE_PERBB);
-        // db.execSQL(BahanPakan.CREATE_TABLE_BAHAN_PAKAN);
-        // db.execSQL(BobotSapi.CREATE_TABLE_BOBOT_SAPI);
-        // db.execSQL(Sapi.CREATE_TABLE_SAPI);
-        // db.execSQL(DetailPakan.CREATE_TABLE_DETAIL_PAKAN);
-        // db.execSQL(DetailSapi.CREATE_TABLE_DETAIL_SAPI);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // // on upgrade drop older tables
-        // db.execSQL("DROP TABLE IF EXISTS " + Sapi.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + BahanPakan.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + BobotSapi.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + DetailPakan.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + DetailSapi.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + LemakSusu.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + perBB.TABLE_NAME);
-        // db.execSQL("DROP TABLE IF EXISTS " + ProduksiSusu.TABLE_NAME);
-
-        // // create new tables
-        // onCreate(db);
-    }
+//    @Override
+//    public void onCreate(SQLiteDatabase db) {
+//        // db.execSQL("PRAGMA foreign_keys=ON;");
+//        // // creating required tables
+//        // db.execSQL(ProduksiSusu.CREATE_TABLE_PRODUKSI_SUSU);
+//        // db.execSQL(LemakSusu.CREATE_TABLE_LEMAK_SUSU);
+//        // db.execSQL(perBB.CREATE_TABLE_PERBB);
+//        // db.execSQL(BahanPakan.CREATE_TABLE_BAHAN_PAKAN);
+//        // db.execSQL(BobotSapi.CREATE_TABLE_BOBOT_SAPI);
+//        // db.execSQL(Sapi.CREATE_TABLE_SAPI);
+//        // db.execSQL(DetailPakan.CREATE_TABLE_DETAIL_PAKAN);
+//        // db.execSQL(DetailSapi.CREATE_TABLE_DETAIL_SAPI);
+//    }
+//
+//    @Override
+//    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+//        // // on upgrade drop older tables
+//        // db.execSQL("DROP TABLE IF EXISTS " + Sapi.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + BahanPakan.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + BobotSapi.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + DetailPakan.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + DetailSapi.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + LemakSusu.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + perBB.TABLE_NAME);
+//        // db.execSQL("DROP TABLE IF EXISTS " + ProduksiSusu.TABLE_NAME);
+//
+//        // // create new tables
+//        // onCreate(db);
+//    }
 
     //insert database
     public long insertBahanPakan(String nama_pakan, Double bk ,Double tdn, Double pk, Double ca, Double p,int harga) {
         // get writable database as we want to write data
-        SQLiteDatabase db = dbExist;
+        SQLiteDatabase db = openDatabase();
 
         ContentValues values = new ContentValues();
         // `id` and `timestamp` will be inserted automatically.
@@ -256,7 +269,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     //Fetch Single Data
     @SuppressLint("Range")
     public BahanPakan getBahanPakan(long bahan_pakan_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + BahanPakan.TABLE_NAME + " WHERE "
                 + BahanPakan.COLUMN_ID + " = " + bahan_pakan_id;
@@ -284,7 +297,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public BobotSapi getBobotSapi(long bobot_sapi_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + BobotSapi.TABLE_NAME + " WHERE "
                 + BobotSapi.COLUMN_ID + " = " + bobot_sapi_id;
@@ -312,7 +325,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public DetailPakan getDetailPakan(long detail_pakan_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + DetailPakan.TABLE_NAME + " WHERE "
                 + DetailPakan.COLUMN_ID + " = " + detail_pakan_id;
@@ -336,7 +349,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public DetailSapi getDetailSapi(long detail_sapi_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + DetailSapi.TABLE_NAME + " WHERE "
                 + DetailSapi.COLUMN_ID + " = " + detail_sapi_id;
@@ -360,7 +373,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public LemakSusu getLemakSusu(long lemak_susu_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + LemakSusu.TABLE_NAME + " WHERE "
                 + LemakSusu.COLUMN_ID + " = " + lemak_susu_id;
@@ -386,7 +399,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public perBB getperBB(long perBB_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + perBB.TABLE_NAME + " WHERE "
                 + perBB.COLUMN_ID + " = " + perBB_id;
@@ -411,7 +424,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public ProduksiSusu getProduksiSusu(long produksi_susu_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + ProduksiSusu.TABLE_NAME + " WHERE "
                 + ProduksiSusu.COLUMN_ID + " = " + produksi_susu_id;
@@ -433,7 +446,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @SuppressLint("Range")
     public Sapi getSapi(long sapi_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
 
         String selectQuery = "SELECT  * FROM " + Sapi.TABLE_NAME + " WHERE "
                 + Sapi.COLUMN_ID + " = " + sapi_id;
@@ -464,7 +477,7 @@ public List<Sapi> getAllSapis() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -492,7 +505,7 @@ public List<ProduksiSusu> getAllProduksiSusus() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -518,7 +531,7 @@ public List<perBB> getAllperBBs() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -546,7 +559,7 @@ public List<LemakSusu> getAllLemakSusus() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -576,7 +589,7 @@ public List<DetailSapi> getAllDetailSapis() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -605,7 +618,7 @@ public List<DetailPakan> getAllDetailPakans() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -632,7 +645,7 @@ public List<BobotSapi> getAllBobotSapis() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -664,7 +677,7 @@ public List<BahanPakan> getAllBahanPakans() {
  
     Log.e(LOG, selectQuery);
  
-    SQLiteDatabase db = this.getReadableDatabase();
+    SQLiteDatabase db = dbExist;
     Cursor c = db.rawQuery(selectQuery, null);
 
     // looping through all rows and adding to list
@@ -919,14 +932,14 @@ public List<BahanPakan> getAllBahanPakans() {
         
     }
     public void closeDB() {
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         if (db != null && db.isOpen())
             db.close();
     }
 
     public int getBahanPakanCount() {
         String countQuery = "SELECT  * FROM " + BahanPakan.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -939,7 +952,7 @@ public List<BahanPakan> getAllBahanPakans() {
     
     public int getBobotSapiCount() {
         String countQuery = "SELECT  * FROM " + BobotSapi.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -952,7 +965,7 @@ public List<BahanPakan> getAllBahanPakans() {
     
     public int getDetailPakanCount() {
         String countQuery = "SELECT  * FROM " + DetailPakan.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -965,7 +978,7 @@ public List<BahanPakan> getAllBahanPakans() {
    
     public int getDetailSapiCount() {
         String countQuery = "SELECT  * FROM " + DetailSapi.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -978,7 +991,7 @@ public List<BahanPakan> getAllBahanPakans() {
     
     public int getLemakSusuCount() {
         String countQuery = "SELECT  * FROM " + LemakSusu.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -991,7 +1004,7 @@ public List<BahanPakan> getAllBahanPakans() {
     
     public int getperBBCount() {
         String countQuery = "SELECT  * FROM " + perBB.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -1004,7 +1017,7 @@ public List<BahanPakan> getAllBahanPakans() {
   
     public int getProduksiSusuCount() {
         String countQuery = "SELECT  * FROM " + ProduksiSusu.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
@@ -1017,7 +1030,7 @@ public List<BahanPakan> getAllBahanPakans() {
     
     public int getSapiCount() {
         String countQuery = "SELECT  * FROM " + Sapi.TABLE_NAME;
-        SQLiteDatabase db = this.getReadableDatabase();
+        SQLiteDatabase db = dbExist;
         Cursor cursor = db.rawQuery(countQuery, null);
      
         int count = cursor.getCount();
